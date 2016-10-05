@@ -28,4 +28,13 @@ interface DataCollectorInterface
      * @return string
      */
     function getName();
+
+    /**
+     * Returns associative array with keys beeing the
+     * name of the key in metadata and the value beeing
+     * the name of the key in the collected data
+     *
+     * @return array
+     */
+    function getAppendMetaAttributes();
 }

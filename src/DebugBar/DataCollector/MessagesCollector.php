@@ -18,6 +18,8 @@ use DebugBar\DataFormatter\DataFormatterInterface;
  */
 class MessagesCollector extends AbstractLogger implements DataCollectorInterface, MessagesAggregateInterface, Renderable
 {
+    protected $appendMetaAttributes = [];
+
     protected $name;
 
     protected $messages = array();
@@ -32,6 +34,41 @@ class MessagesCollector extends AbstractLogger implements DataCollectorInterface
     public function __construct($name = 'messages')
     {
         $this->name = $name;
+    }
+
+
+    /**
+     * Returns the data this collector appends to meta
+     *
+     * @return array $appendMetaAttributes
+     */
+    public function getAppendMetaAttributes()
+    {
+        return $this->appendMetaAttributes;
+    }
+
+    /**
+     * Sets the data this collector appends to meta
+     *
+     * @param array $append
+     * @return $this
+     */
+    public function setAppendMetaAttributes($append)
+    {
+        $this->appendMetaAttributes = $append;
+        return $this;
+    }
+
+    /**
+     * Add entries to the data this collector appends to meta
+     *
+     * @param array $append
+     * @return $this
+     */
+    function appendToMeta($append)
+    {
+        $this->appendMetaAttributes = array_merge($this->appendMetaAttributes, $append);
+        return $this;
     }
 
     /**
